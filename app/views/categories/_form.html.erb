@@ -1,0 +1,29 @@
+
+
+<div class="form-container">
+    <%=form_with model: @category do |f| %>
+
+        <%= f.label "Назва"%>
+        <%= f.text_field :name%>
+        <%if @category.errors[:name].any?%>
+            <div class="error"><%= @category.errors[:name].first%></div>
+        <%end%>
+
+        <%= f.label "Опис"%>
+        <%= f.text_field :description%>
+        <%if @category.errors[:description].any?%>
+            <div class="error"><%= @category.errors[:description].first%></div>
+        <%end%>
+
+       <div class="form__buttons">
+            <% if @category.new_record? %>
+                <%= f.button "Створити", type: "submit", class: "button" %>
+            <% else %>
+                <%= f.button "Оновити", type: "submit", class: "button" %>
+            <% end %>
+            <%= f.button "Скасувати", type: "reset", class: "button" %>
+        </div>
+
+    <%end%>
+</div>
+

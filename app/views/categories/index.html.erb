@@ -1,0 +1,42 @@
+<div class="categories">
+    <div class="content">
+
+        <h1>Категорії</h1>
+        <div class="search-form">
+            <%= search_form_for @q do |f| %>
+                <%= f.search_field :name_cont, class:"search-field", placeholder:"Введіть перші літери назви категорії" %>
+                            
+                <%=f.button "Пошук", type: "submin", class:"search-button"%>
+            <%end%>
+        </div>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>Назва</th>
+                    <th>Опис</th>
+                    <th>Управління</th>
+                </tr>
+            </thead>
+
+            <tbody> 
+                <%@categories.each do |element|%>
+                    <tr>
+                        <th><%= element.name%></th>
+                        <th><%= element.description%></th>
+
+                        <th>
+                            <%=link_to "Змінити", edit_category_path(element)%>
+                            <%=link_to "Видалити", category_path(element), data: {
+                            turbo_method: :delete,
+                            turbo_confirm: "Are you sure?"
+                            }%>                      
+                        </th>
+                    </tr>
+                <%end%>
+            </tbody>
+        </table>
+        <button class="button"><%=link_to "Додати нову категорію", new_category_path %></button>
+    </div>
+</div>
+

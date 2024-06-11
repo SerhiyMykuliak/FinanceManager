@@ -1,0 +1,42 @@
+
+<div class="form-container">
+    <%=form_with model: @transaction do |f|%>
+
+    <%=f.label "Категорія"%>
+    <%=f.select :category, @categories, prompt: "Виберіть категорію" %>
+    <%if @transaction.errors[:category].any?%>
+        <div class="error"><%=@transaction.errors[:category].first%></div>
+    <%end%>
+
+    <%=f.label "Тип операції"%>
+    <%=f.select :operation_type, ["Витрата", "Прихід"], prompt: "Виберіть тип операції"%>
+    <%if @transaction.errors[:operation_type].any?%>
+        <div class="error"><%= @transaction.errors[:operation_type].first%></div>
+    <%end%>
+
+    <%=f.label "Ціна"%>
+    <%=f.text_field :amount%>
+    <%if @transaction.errors[:amount].any?%>
+        <div class="error"><%=@transaction.errors[:amount].first%></div>
+    <%end%>
+
+    <%=f.label "Опис"%>
+    <%=f.text_field :description%>
+    <%if @transaction.errors[:description].any?%>
+        <div class="error"><%=@transaction.errors[:description].first%></div>
+    <%end%>
+
+    <%=f.label "Дата"%>
+    <%=f.date_field :updated_at%>
+    
+
+    <div class="form__buttons">
+        <% if @transaction.new_record? %>
+            <%= f.button "Створити", type: "submit", class: "button" %>
+        <% else %>
+            <%= f.button "Оновити", type: "submit", class: "button" %>
+        <% end %>
+        <%= f.button "Скасувати", type: "reset", class: "button" %>
+    </div>
+<%end%>
+</div>

@@ -1,0 +1,32 @@
+
+<div class="content">
+    <h1>Звіт за період <%=@start_date%> - <%=@end_date%></h1>
+    <h3><%=@operation_type %></h3>
+    <div class="table-report" style="width:400px" >
+        <table>
+            <thead>
+                <tr>
+                    <th>Категорія</th>
+                    <th>Сума</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <%@transactions_expenses_revenues.each do |key, value|%>
+                <tr>
+                    <th><%=key%></th>
+                    <th><%=value%></th>
+                </tr>
+                <%end%>
+                <tr style="background-color:rgb(138, 216, 20)">
+                    <th>Сума</th>
+                    <th><%=@transactions_expenses_revenues.values.sum%> грн</th>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <%= pie_chart @transactions_expenses_revenues %>
+
+
+</div>

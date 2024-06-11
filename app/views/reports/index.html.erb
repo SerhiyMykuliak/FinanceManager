@@ -1,0 +1,21 @@
+<div class="form-container">
+  <%= form_with(url: reports_path, method: :get) do |f| %>
+    <%= f.label "Початкова дата" %>
+    <%= f.date_field :start_date, value: @start_date %>
+
+    <%= f.label "Кінцева дата" %>
+    <%= f.date_field :end_date, value: @end_date %>
+
+    <%= f.label "Тип операції" %>
+    <%= f.select :operation_type, ["Витрата", "Прихід"]%>
+
+    <%= f.label "Категорія" %>
+    <%= f.select :category, @categories, prompt: "Виберіть категорію"%>
+    
+    <div class="form__buttons">
+      <%= f.button "Створити звіт", type: "submit", formaction: reports_transaction_report_path, class: "button" %>
+      <%= f.button "Графік по датах", type: "submit", formaction: reports_d_b_d_report_path,  class: "button"  %>
+      <%= f.button "Скинути", type: "reset",  class: "button"  %>
+    </div>
+  <% end %>
+</div>

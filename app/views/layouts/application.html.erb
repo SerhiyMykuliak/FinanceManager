@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>FinanceManager</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+    <%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
+  
+  </head>
+
+  <body>
+
+    <header>
+      <div class="header__content">
+        <menu>
+          <ul>
+            <li> <%=link_to "Категорії", categories_path%> </li>
+            <li> <%=link_to "Транзакції", transactions_path%> </li>
+            <li> <%=link_to "Звіти", reports_path%> </li>
+          </ul>
+        </menu>
+      </div>
+    </header>
+
+    <%= yield %>
+  </body>
+</html>
